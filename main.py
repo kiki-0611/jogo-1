@@ -78,7 +78,7 @@ def update():
         pokeboll.y = random.randint (50, HEIGHT - 50)
         pontos = pontos - 1
 
-    if pontos >= 10:
+    if pontos >= 9:
         estado_jogo = "VITORIA"
 
     if estado_jogo == "VITORIA":
