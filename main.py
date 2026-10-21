@@ -101,7 +101,8 @@ def draw():
     
     elif estado_jogo == "VITORIA":
         screen.draw.text (f"VOCE VENCEU!!!!!!!!",center=(WIDTH/2,220),fontsize=36, color="yellow")
-        screen.draw.text (f"Aperte R para reiniciar", midbottom=(WIDTH/2,500),fontsize=36, color="yellow")
+        screen.draw.text (f"Aperte R para reiniciar", midbotto
+        m=(WIDTH/2,500),fontsize=36, color="yellow")
 
 
 pgzrun.go()
