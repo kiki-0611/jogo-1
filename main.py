@@ -138,9 +138,18 @@ def update():
     if keyboard.s and pikomon.bottom < HEIGHT:
         pikomon.y += VELOCIDADE_HEROI
 
+        
+
     for p in paredes:
         if pikomon.colliderect(p):
-            pikomon.x, pikomon.y = pos_ant_x, pos_ant_y
+            if pikomon.left < p.right and pikomon.x > p.x:
+                pikomon.left = p.right
+            if pikomon.right < p.left and pikomon.x < p.x:
+                pikomon.right = p.left 
+            if pikomon.bottom < p.top and pikomon.y < p.y:
+                pikomon.bottom = p.top     
+            if pikomon.top < p.bottom and pikomon.y > p.y:
+                pikomon.top = p.bottom
 
     mover_pokeboll()
 
