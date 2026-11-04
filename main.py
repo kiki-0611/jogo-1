@@ -1,12 +1,14 @@
 import pygame
 import pgzrun
 import random
+import math
 
 WIDTH = 800
 HEIGHT = 600
 TITLE = "Primeiro GAAAMEEEE no Pygame Zero"
 estado_jogo = "JOGANDO"
 waypoint_atual = 0 
+estado_inimigo = "PATRULHA"
 
 waypoints =[
     (650, 450),
@@ -35,8 +37,15 @@ redimenssionar(pokeboll,100)
 
 pontos = 0  
 
+def atualizar_guarda():
+    global estado_perseguiçao, estado_PATRULHA, estado_jogo
+    dx = pikomon.x - pokeboll.x
+    dy = pikomon.y - pokeboll.y
+    distancia_qd = dx**2 + dy**2
+
 def perseguicao_pokeboll():
-    if estado_inimigo =="perseguicao"
+    global waypoint_atual
+    if estado_inimigo =="perseguicao":
         if pikomon.x > pokeboll.x:
             pokeboll.x = pokeboll.x + 0.8
         if pikomon.x < pokeboll.x:
@@ -45,12 +54,12 @@ def perseguicao_pokeboll():
             pokeboll.y = pokeboll.y + 0.8
         if pikomon.y < pokeboll.y:
             pokeboll.y = pokeboll.y - 0.8
-    elif estado_inimigo == "patrulha":
-        alvo_x,alvo_y = waypoints [waypoints_atual]
-        dist_waypoint+ math.hyplot (alvo_x - inimigo.x, alvo_y - iimigo.y)
-    if dist_waypoint < 10:
-        waypoint_atual = (waypoint_atual + 1) %len (waypoints)
+    elif estado_inimigo == "PATRULHA":
         alvo_x,alvo_y = waypoints [waypoint_atual]
+        dist_waypoint = math.hypot (alvo_x - pokeboll.x, alvo_y - pokeboll.y)
+        if dist_waypoint < 10:
+            waypoint_atual = (waypoint_atual + 1) %len (waypoints)
+            alvo_x,alvo_y = waypoints [waypoint_atual]
 
 
 
@@ -66,7 +75,9 @@ def update():
     if keyboard.s:
         pikomon.y +=  2
 
-    perseguicao_pokeboll ()
+    atualizar_guarda()
+
+    perseguicao_pokeboll()
     
     if pikomon.colliderect(comida):
         comida.x = random.randint (50, WIDTH - 50)
@@ -101,8 +112,8 @@ def draw():
     
     elif estado_jogo == "VITORIA":
         screen.draw.text (f"VOCE VENCEU!!!!!!!!",center=(WIDTH/2,220),fontsize=36, color="yellow")
-        screen.draw.text (f"Aperte R para reiniciar", midbotto
+        screen.draw.text (f"Aperte R para reiniciar", midbottom,
         m=(WIDTH/2,500),fontsize=36, color="yellow")
 
-
+print (estado_inimigo)
 pgzrun.go()
